@@ -1,0 +1,43 @@
+{
+  "name": "solidity-security-snippets",
+  "displayName": "Solidity Security Snippets",
+  "description": "Secure and gas-optimized Solidity snippets for Base chain. Includes best practices for reentrancy guards, checks-effects-interactions, ERC20, ERC721, and more.",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "keywords": [
+    "solidity",
+    "security",
+    "gas",
+    "base",
+    "snippets",
+    "ethereum"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "solidity",
+        "path": "./snippets/solidity-security-snippets.json"
+      }
+    ]
+  },
+  "activationEvents": [
+    "onLanguage:solidity"
+  ],
+  "main": "./src/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "@types/node": "16.x",
+    "typescript": "^4.4.3"
+  }
+}

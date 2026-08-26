@@ -1,0 +1,102 @@
+{
+  "Reentrancy Guard": {
+    "prefix": "reentrancyGuard",
+    "body": [
+      "modifier nonReentrant() {",
+      "    require(!locked, \"ReentrancyGuard: reentrant call\");",
+      "    locked = true;",
+      "    _;",
+      "    locked = false;",
+      "}",
+      "",
+      "bool private locked = false;"
+    ],
+    "description": "Reentrancy guard modifier to prevent reentrant calls"
+  },
+  "Checks-Effects-Interactions": {
+    "prefix": "checksEffectsInteractions",
+    "body": [
+      "function safeWithdraw() public {",
+      "    // Checks",
+      "    require(balance[msg.sender] > 0, \"No balance\");",
+      "    ",
+      "    // Effects",
+      "    uint256 amount = balance[msg.sender];",
+      "    balance[msg.sender] = 0;",
+      "    ",
+      "    // Interactions",
+      "    (bool success, ) = msg.sender.call{value: amount}(\"\");",
+      "    require(success, \"Transfer failed\");",
+      "}"
+    ],
+    "description": "Checks-Effects-Interactions pattern to prevent reentrancy"
+  },
+  "Pausable": {
+    "prefix": "pausable",
+    "body": [
+      "contract Pausable {",
+      "    bool public paused;",
+      "    ",
+      "    modifier whenNotPaused() {",
+      "        require(!paused, \"Pausable: paused\");",
+      "        _;",
+      "    }",
+      "    ",
+      "    modifier whenPaused() {",
+      "        require(paused, \"Pausable: not paused\");",
+      "        _;",
+      "    }",
+      "    ",
+      "    function pause() public {",
+      "        paused = true;",
+      "    }",
+      "    ",
+      "    function unpause() public {",
+      "        paused = false;",
+      "    }",
+      "}"
+    ],
+    "description": "Pausable contract pattern"
+  },
+  "Assert Invariant": {
+    "prefix": "assertInvariant",
+    "body": [
+      "function checkInvariant() public view {",
+      "    assert(totalSupply >= 0);",
+      "    assert(balanceOf[address(0)] == 0);",
+      "    // Add more invariants here",
+      "}"
+    ],
+    "description": "Assert for runtime invariant checking"
+  },
+  "SafeMath": {
+    "prefix": "safeMath",
+    "body": [
+      "library SafeMath {",
+      "    function add(uint256 a, uint256 b) internal pure returns (uint256) {",
+      "        uint256 c = a + b;",
+      "        require(c >= a, \"SafeMath: addition overflow\");",
+      "        return c;",
+      "    }",
+      "    ",
+      "    function sub(uint256 a, uint256 b) internal pure returns (uint256) {",
+      "        require(b <= a, \"SafeMath: subtraction overflow\");",
+      "        return a - b;",
+      "    }",
+      "    ",
+      "    function mul(uint256 a, uint256 b) internal pure returns (uint256) {",
+      "        if (a == 0) return 0;",
+      "        uint256 c = a * b;",
+      "        require(c / a == b, \"SafeMath: multiplication overflow\");",
+      "        return c;",
+      "    }",
+      "    ",
+      "    function div(uint256 a, uint256 b) internal pure returns (uint256) {",
+      "        require(b > 0, \"SafeMath: division by zero\");",
+      "        return a / b;",
+      "    }",
+      "}"
+    ],
+    "description": "SafeMath library for Solidity <0.8"
+  }
+}
