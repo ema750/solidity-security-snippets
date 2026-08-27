@@ -2,7 +2,8 @@
   "name": "solidity-security-snippets",
   "displayName": "Solidity Security Snippets",
   "description": "Secure and gas-optimized Solidity snippets for Base chain. Includes best practices for reentrancy guards, checks-effects-interactions, ERC20, ERC721, and more.",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "publisher": "ema750",
   "engines": {
     "vscode": "^1.60.0"
   },
